@@ -7,7 +7,7 @@ import minus from './assets/minus.png'
 import powerskills from './assets/power.png'
 import './App.css'
 import soundSkill from './assets/addskillll.mp3'
-import useSound from 'use-sound'
+import useSound from '../node_modules/use-sound/dist/index'
 
 function Model(props: any) {
   const { scene } = useGLTF('./warrior.glb')
