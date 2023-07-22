@@ -1,13 +1,30 @@
+import { FC, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useGLTF, Stage, PresentationControls } from '@react-three/drei'
+import EditName from './editName/index'
+import plus from './assets/plus.png'
+import minus from './assets/minus.png'
+import powerskills from './assets/power.png'
 import './App.css'
+import soundSkill from './assets/addskillll.mp3'
+import useSound from 'use-sound'
 
 function Model(props: any) {
   const { scene } = useGLTF('./warrior.glb')
   return <primitive object={scene} {...props} />
 }
 
-function App() {
+const App: FC = (): JSX.Element => {
+  const [warriorName, setWarriorName] = useState<string>('Мирный воин')
+  const [edit, setEdit] = useState<boolean>(false)
+  const [addSkillPower, setAddSkillPower] = useState<boolean>(false)
+
+  const handleEditNameWarrior = (): void => {
+    setEdit(!edit)
+  }
+  const [play] = useSound(soundSkill)
+
+
   return (
     <div className="container">
       <Canvas
@@ -24,13 +41,61 @@ function App() {
         </PresentationControls>
       </Canvas>
       <div className="skills">
-        <h2>Личные навыки</h2>
+        <h2>Название персонажа</h2>
+        <div>
+          {edit ? (
+            <EditName
+              warriorName={warriorName}
+              setWarriorName={setWarriorName}
+            />
+          ) : (
+            <span>{warriorName}</span>
+          )}
+          <button onClick={handleEditNameWarrior}>
+            {edit ? 'Сохранить' : 'Редактировать'}
+          </button>
+        </div>
+        <h3>Личные навыки</h3>
         <div className="skills__items">
           <ul className="skills__list__item">
-            <li className="skills__item">Сила<img src="" alt=""/><img src="" alt=""/></li>
-            <li className="skills__item">Ловкость<img src="" alt=""/><img src="" alt=""/></li>
-            <li className="skills__item">Интеллект<img src="" alt=""/><img src="" alt=""/></li>
-            <li className="skills__item">Харизма<img src="" alt=""/><img src="" alt=""/></li>
+            <li className="skills__item">
+              Сила
+              <img
+                src={powerskills}
+                alt="skill power"
+                style={{ width: '100px' }}
+              />
+              {addSkillPower ? (
+                <img
+                  className="skills__image__add"
+                  src={plus}
+                  alt="icon add a new skills - power"
+                  onClick={()=>(play(), setAddSkillPower(!addSkillPower))}
+                />
+              ) : (
+                <img
+                  className="skills__image__delete"
+                  src={minus}
+                  alt="icon delete a new skills - power"
+                  onClick={()=>(play(), setAddSkillPower(!addSkillPower))}
+                />
+              )}
+            </li>
+            <li className="skills__item">
+              Ловкость
+              <img src="" alt="" />
+              <img src="" alt="" />
+            </li>
+            <li className="skills__item">
+              Интеллект
+              <img src="" alt="" />
+              <img src="" alt="" />
+            </li>
+            <li className="skills__item">
+              Харизма
+              <img src="" alt="" />
+              <img src="" alt="" />
+            </li>
           </ul>
         </div>
       </div>
