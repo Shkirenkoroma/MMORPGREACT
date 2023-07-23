@@ -1,3 +1,16 @@
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+.skills__edit__name {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   display: flex;
   width: 100%;
@@ -24,16 +37,22 @@
 }
 
 .skills__image__add {
-  width: 130px;
+  width: 80px;
 }
 .skills__image__add:hover {
   cursor: pointer;
 }
 
 .skills__image__delete {
-  width: 110px;
+  width: 60px;
 }
 
 .skills__image__delete:hover {
   cursor: pointer;
+}
+
+.skills__list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }

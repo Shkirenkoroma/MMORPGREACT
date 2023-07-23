@@ -5,9 +5,12 @@ import EditName from './editName/index'
 import plus from './assets/plus.png'
 import minus from './assets/minus.png'
 import powerskills from './assets/power.png'
+import charismaskills from './assets/charisma.png'
+import dexterityskills from './assets/dexterity.png'
+import intelligenceskills from './assets/intelligence.png'
 import './App.css'
 import soundSkill from './assets/addskillll.mp3'
-import useSound from '../node_modules/use-sound/dist/index'
+import useSound from 'use-sound'
 
 function Model(props: any) {
   const { scene } = useGLTF('./warrior.glb')
@@ -42,7 +45,7 @@ const App: FC = (): JSX.Element => {
       </Canvas>
       <div className="skills">
         <h2>Название персонажа</h2>
-        <div>
+        <div className="skills__edit__name">
           {edit ? (
             <EditName
               warriorName={warriorName}
@@ -83,18 +86,60 @@ const App: FC = (): JSX.Element => {
             </li>
             <li className="skills__item">
               Ловкость
-              <img src="" alt="" />
-              <img src="" alt="" />
+              <img src={dexterityskills} alt=""  style={{ width: '100px' }}/>
+              {addSkillPower ? (
+                <img
+                  className="skills__image__add"
+                  src={plus}
+                  alt="icon add a new skills - power"
+                  onClick={()=>(play(), setAddSkillPower(!addSkillPower))}
+                />
+              ) : (
+                <img
+                  className="skills__image__delete"
+                  src={minus}
+                  alt="icon delete a new skills - power"
+                  onClick={()=>(play(), setAddSkillPower(!addSkillPower))}
+                />
+              )}
             </li>
             <li className="skills__item">
               Интеллект
-              <img src="" alt="" />
-              <img src="" alt="" />
+              <img src={intelligenceskills} alt=""  style={{ width: '100px' }} />
+              {addSkillPower ? (
+                <img
+                  className="skills__image__add"
+                  src={plus}
+                  alt="icon add a new skills - power"
+                  onClick={()=>(play(), setAddSkillPower(!addSkillPower))}
+                />
+              ) : (
+                <img
+                  className="skills__image__delete"
+                  src={minus}
+                  alt="icon delete a new skills - power"
+                  onClick={()=>(play(), setAddSkillPower(!addSkillPower))}
+                />
+              )}
             </li>
             <li className="skills__item">
               Харизма
-              <img src="" alt="" />
-              <img src="" alt="" />
+              <img src={charismaskills} alt=""  style={{ width: '100px' }}/>
+              {addSkillPower ? (
+                <img
+                  className="skills__image__add"
+                  src={plus}
+                  alt="icon add a new skills - power"
+                  onClick={()=>(play(), setAddSkillPower(!addSkillPower))}
+                />
+              ) : (
+                <img
+                  className="skills__image__delete"
+                  src={minus}
+                  alt="icon delete a new skills - power"
+                  onClick={()=>(play(), setAddSkillPower(!addSkillPower))}
+                />
+              )}
             </li>
           </ul>
         </div>
